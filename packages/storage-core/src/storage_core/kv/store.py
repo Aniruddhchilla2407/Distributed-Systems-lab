@@ -175,7 +175,7 @@ class KVStore:
         with self._cv:
             self._writer.close()
 
-    def __enter__(self) -> "KVStore":
+    def __enter__(self) -> KVStore:
         return self
 
     def __exit__(self, *exc_info: object) -> None:

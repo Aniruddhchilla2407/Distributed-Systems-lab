@@ -20,9 +20,7 @@ def test_append_and_iterate_round_trip(tmp_path: Path) -> None:
     read_back = list(reader.iterate_from(0))
 
     assert len(read_back) == 3
-    for (offset, entry), expected_offset, expected in zip(
-        read_back, offsets, entries, strict=True
-    ):
+    for (offset, entry), expected_offset, expected in zip(read_back, offsets, entries, strict=True):
         assert offset == expected_offset
         assert entry.entry_type == expected.entry_type
         assert entry.key == expected.key

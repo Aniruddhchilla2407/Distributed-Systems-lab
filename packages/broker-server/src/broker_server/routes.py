@@ -75,9 +75,7 @@ def create_topic(body: CreateTopicRequest, request: Request) -> TopicInfo:
 @router.get("/topics", response_model=list[TopicInfo])
 def list_topics(request: Request) -> list[TopicInfo]:
     registry = _registry(request)
-    return [
-        TopicInfo(name=t.name, num_partitions=t.num_partitions) for t in registry.list_topics()
-    ]
+    return [TopicInfo(name=t.name, num_partitions=t.num_partitions) for t in registry.list_topics()]
 
 
 @router.post("/topics/{topic_name}/produce", response_model=ProduceResponse)

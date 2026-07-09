@@ -1,6 +1,5 @@
 import httpx
 import pytest
-
 from bench_cli.targets.broker_target import BrokerTarget
 from bench_cli.targets.kv_target import KVTarget
 from bench_cli.workload import WorkloadConfig

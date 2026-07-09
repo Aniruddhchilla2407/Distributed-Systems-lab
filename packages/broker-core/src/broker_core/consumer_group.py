@@ -13,7 +13,6 @@ that restarts resumes from where it left off instead of from the start.
 from __future__ import annotations
 
 import json
-from pathlib import Path
 
 from broker_core.consumer import Consumer
 from broker_core.topic import Topic

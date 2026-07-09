@@ -1,6 +1,6 @@
 """CLI entrypoint:
-  bench-cli kv --url http://127.0.0.1:8000 --concurrency 20 --duration 10
-  bench-cli broker --url http://127.0.0.1:8001 --concurrency 20 --duration 10
+bench-cli kv --url http://127.0.0.1:8000 --concurrency 20 --duration 10
+bench-cli broker --url http://127.0.0.1:8001 --concurrency 20 --duration 10
 """
 
 from __future__ import annotations
@@ -52,9 +52,7 @@ def broker(
     url: str = typer.Option("http://127.0.0.1:8001", help="Base URL of broker-server"),
     concurrency: int = typer.Option(10, help="Number of concurrent workers"),
     duration: float = typer.Option(10.0, help="Benchmark duration in seconds"),
-    write_ratio: float = typer.Option(
-        0.5, help="Fraction of operations that are writes (produce)"
-    ),
+    write_ratio: float = typer.Option(0.5, help="Fraction of operations that are writes (produce)"),
     key_space: int = typer.Option(1000, help="Number of distinct message keys"),
     value_size: int = typer.Option(100, help="Message value size in bytes"),
     topic: str = typer.Option("bench-topic", help="Topic name to benchmark against"),

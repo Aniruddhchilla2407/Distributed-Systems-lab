@@ -32,9 +32,7 @@ def test_batching_flushes_full_batch_immediately(tmp_path: Path) -> None:
 
     # batch_max_size=5, window is long -- a burst of 5 should flush on
     # size, not wait for the timer.
-    with KVStore(
-        log_path, fsync_every_write=True, batch_window_ms=5000, batch_max_size=5
-    ) as store:
+    with KVStore(log_path, fsync_every_write=True, batch_window_ms=5000, batch_max_size=5) as store:
         start = time.monotonic()
         threads = [
             threading.Thread(target=store.set, args=(f"k{i}".encode(), b"v")) for i in range(5)

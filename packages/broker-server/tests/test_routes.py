@@ -1,10 +1,9 @@
+from collections.abc import Iterator
 from pathlib import Path
-from typing import Iterator
 
 import pytest
-from fastapi.testclient import TestClient
-
 from broker_server.app import create_app
+from fastapi.testclient import TestClient
 
 
 @pytest.fixture
@@ -47,9 +46,7 @@ def test_produce_to_missing_topic_returns_404(client: TestClient) -> None:
 
 def test_produce_and_consume_round_trip(client: TestClient) -> None:
     client.post("/topics", json={"name": "events", "num_partitions": 1})
-    produce_response = client.post(
-        "/topics/events/produce", json={"value": "hello", "key": "k1"}
-    )
+    produce_response = client.post("/topics/events/produce", json={"value": "hello", "key": "k1"})
     assert produce_response.status_code == 200
     body = produce_response.json()
     assert body["partition"] == 0

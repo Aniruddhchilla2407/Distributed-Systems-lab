@@ -1,5 +1,4 @@
 import pytest
-
 from storage_core.log.entry import HEADER_SIZE, CorruptEntryError, EntryType, LogEntry
 
 
@@ -61,8 +60,8 @@ def test_short_header_is_rejected() -> None:
 def test_unknown_entry_type_is_rejected() -> None:
     import struct
 
-    from storage_core.log.entry import HEADER_FORMAT
     from storage_core.log.checksum import compute_crc32
+    from storage_core.log.entry import HEADER_FORMAT
 
     bogus_type = 99
     crc = compute_crc32(bogus_type, b"k", b"v")

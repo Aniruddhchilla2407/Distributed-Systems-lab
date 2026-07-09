@@ -18,7 +18,7 @@ from pathlib import Path
 
 from broker_core.consumer_group import ConsumerGroup
 from broker_core.partition import ConsumerRecord
-from broker_core.producer import ProduceResult, Producer
+from broker_core.producer import Producer, ProduceResult
 from broker_core.topic import Topic
 
 
@@ -42,9 +42,7 @@ class BrokerRegistry:
     def create_topic(self, name: str, num_partitions: int) -> Topic:
         if name in self._topics:
             raise TopicAlreadyExistsError(f"topic '{name}' already exists")
-        topic = Topic(
-            self.data_dir, name, num_partitions, fsync_every_write=self.fsync_every_write
-        )
+        topic = Topic(self.data_dir, name, num_partitions, fsync_every_write=self.fsync_every_write)
         self._topics[name] = topic
         self._producers[name] = Producer(topic)
         return topic

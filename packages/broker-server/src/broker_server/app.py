@@ -6,9 +6,9 @@ down on shutdown, exposed to route handlers via app.state.
 
 from __future__ import annotations
 
+from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from pathlib import Path
-from typing import AsyncIterator
 
 from fastapi import FastAPI
 
@@ -16,9 +16,7 @@ from broker_server.registry import BrokerRegistry
 from broker_server.routes import router
 
 
-def create_app(
-    data_dir: str | Path = "data/broker", *, fsync_every_write: bool = True
-) -> FastAPI:
+def create_app(data_dir: str | Path = "data/broker", *, fsync_every_write: bool = True) -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         app.state.registry = BrokerRegistry(data_dir, fsync_every_write=fsync_every_write)

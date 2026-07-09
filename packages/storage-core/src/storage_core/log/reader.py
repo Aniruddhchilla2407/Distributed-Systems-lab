@@ -42,9 +42,7 @@ class LogReader:
                     return  # clean EOF or torn header -- stop either way
 
                 try:
-                    _version, _etype, key_len, value_len, _ts, _crc = LogEntry.decode_header(
-                        header
-                    )
+                    _version, _etype, key_len, value_len, _ts, _crc = LogEntry.decode_header(header)
                 except CorruptEntryError:
                     return
 

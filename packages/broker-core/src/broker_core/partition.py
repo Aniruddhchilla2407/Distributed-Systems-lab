@@ -73,7 +73,7 @@ class Partition:
     def close(self) -> None:
         self._writer.close()
 
-    def __enter__(self) -> "Partition":
+    def __enter__(self) -> Partition:
         return self
 
     def __exit__(self, *exc_info: object) -> None:

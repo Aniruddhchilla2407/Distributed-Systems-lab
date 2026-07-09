@@ -54,7 +54,7 @@ class Topic:
         for p in self._partitions:
             p.close()
 
-    def __enter__(self) -> "Topic":
+    def __enter__(self) -> Topic:
         return self
 
     def __exit__(self, *exc_info: object) -> None:

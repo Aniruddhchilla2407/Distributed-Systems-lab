@@ -64,7 +64,7 @@ class LogWriter:
     def close(self) -> None:
         self._file.close()
 
-    def __enter__(self) -> "LogWriter":
+    def __enter__(self) -> LogWriter:
         return self
 
     def __exit__(self, *exc_info: object) -> None:

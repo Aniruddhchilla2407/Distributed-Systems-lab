@@ -1,9 +1,8 @@
+from collections.abc import Iterator
 from pathlib import Path
-from typing import Iterator
 
 import pytest
 from fastapi.testclient import TestClient
-
 from kv_server.app import create_app
 
 
@@ -94,6 +93,8 @@ def test_data_persists_across_app_restarts(tmp_path: Path) -> None:
         response = client2.get("/keys/x")
         assert response.status_code == 200
         assert response.json()["value"] == "persisted"
+
+
 def test_batched_writes_work_through_http(tmp_path: Path) -> None:
     from kv_server.app import create_app as create_batched_app
 

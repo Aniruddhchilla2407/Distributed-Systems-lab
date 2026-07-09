@@ -53,7 +53,7 @@ class LogEntry:
         return HEADER_SIZE + len(self.key) + len(self.value)
 
     @classmethod
-    def create(cls, entry_type: EntryType, key: bytes, value: bytes = b"") -> "LogEntry":
+    def create(cls, entry_type: EntryType, key: bytes, value: bytes = b"") -> LogEntry:
         """Build a new entry stamped with the current time."""
         return cls(
             entry_type=entry_type,
@@ -90,7 +90,7 @@ class LogEntry:
         return struct.unpack(HEADER_FORMAT, raw_header)
 
     @classmethod
-    def decode(cls, raw_header: bytes, key: bytes, value: bytes) -> "LogEntry":
+    def decode(cls, raw_header: bytes, key: bytes, value: bytes) -> LogEntry:
         """Parse a full entry from its header + payload bytes.
 
         Raises CorruptEntryError if lengths or checksum don't match.
